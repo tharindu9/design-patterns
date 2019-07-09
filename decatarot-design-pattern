@@ -1,0 +1,88 @@
+/*
+The decorator pattern is a design pattern that allows behavior to be added to an individual object,
+dynamically, without affecting the behavior of other objects from the same class
+*/
+
+interface  Tea{
+void taste();
+int price();
+}
+
+class NormalTea implements Tea{
+    
+    @Override
+    public void taste(){
+        System.out.println("Sri lanka tea taste");
+    }
+    
+     @Override
+    public int price(){
+        return 15;
+    }
+}
+
+abstract class DecaratorTea implements Tea{
+    
+    private final Tea tea;
+    
+    DecaratorTea(Tea t){
+        this.tea = t;
+    }
+    @Override
+    public void taste(){
+        this.tea.taste();
+    }
+    
+     @Override
+    public int price(){
+     return  this.tea.price() ;
+
+    }
+}
+
+class MilkTea extends DecaratorTea {
+    
+    MilkTea(Tea t){
+        super(t);
+    }
+    @Override
+    public void taste(){
+        super.taste() ;
+    }
+    
+    @Override
+    public int price(){
+      return  super.price() +5;
+    }
+}
+    
+class GreenTea extends DecaratorTea {
+    
+      GreenTea(Tea t){
+        super(t);
+    }
+    
+     @Override
+    public void taste(){
+        super.taste() ;
+    }
+    
+     @Override
+    public int price(){
+      return  super.price() +10;
+    }
+}    
+    
+  public class Main{
+      
+      public static void main(String[] args){
+          Tea t = new NormalTea();
+          System.out.println( "Normal tea "+t.price());
+          t = new GreenTea(t);
+         System.out.println( "Green tea " +t.price());
+         t= new MilkTea(t);
+        System.out.println("Milk tea"+ t.price());
+
+      }
+  }  
+    
