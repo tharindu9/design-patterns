@@ -1,0 +1,49 @@
+import java.util.*;
+
+interface Carinf {
+    void driverCar();
+}
+  
+class Car implements Carinf{
+    
+    public void driverCar(){
+        System.out.println( " be a polite driver ");
+    }
+    
+}
+
+class ProxyCar implements Carinf {
+
+Driver driver;
+Carinf car;
+  ProxyCar(Driver driver){
+    this.driver = driver;
+    this.car = this;
+  }
+
+  public void driveCar(){
+    if(this.driver.age<18){
+      System.out.println("you dnt have permission ");
+    }
+    else {
+      System.out.println("Wellcome to driving seat");
+    }
+
+  }
+}
+
+class Driver {
+
+  int age;
+
+  Driver(int age){
+    this.age = age;
+  }
+}
+public class Main {
+    public static void main(String[] args) throws Exception {
+     
+     Carinf car = new ProxyCar(new Driver(14));
+     car.driveCar();
+    }
+}
