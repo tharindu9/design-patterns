@@ -1,49 +1,58 @@
+package proxy;
+
+/**
+ 
+ *
+ */
+
 import java.util.*;
 
-interface Carinf {
+interface CarInterface {
     void driverCar();
 }
-  
-class Car implements Carinf{
-    
+
+class Car implements CarInterface{
+
     public void driverCar(){
         System.out.println( " be a polite driver ");
     }
-    
+
 }
 
-class ProxyCar implements Carinf {
+class ProxyCar implements CarInterface {
 
-Driver driver;
-Carinf car;
-  ProxyCar(Driver driver){
-    this.driver = driver;
-    this.car = this;
-  }
-
-  public void driveCar(){
-    if(this.driver.age<18){
-      System.out.println("you dnt have permission ");
-    }
-    else {
-      System.out.println("Wellcome to driving seat");
+    Driver driver;
+    CarInterface car;
+    ProxyCar(Driver driver){
+        this.driver = driver;
+        this.car = this;
     }
 
-  }
+    @Override
+    public void driverCar(){
+        if(this.driver.age<18){
+            System.out.println("you dnt have permission ");
+        }
+        else {
+            System.out.println("Wellcome to the driving seat");
+        }
+
+    }
 }
 
 class Driver {
 
-  int age;
+    int age;
 
-  Driver(int age){
-    this.age = age;
-  }
+    Driver(int age){
+        this.age = age;
+    }
 }
 public class Main {
     public static void main(String[] args) throws Exception {
-     
-     Carinf car = new ProxyCar(new Driver(14));
-     car.driveCar();
+
+        CarInterface car = new ProxyCar(new Driver(14));
+        Scanner sc = new Scanner(System.in);
+        car.driverCar();
     }
 }
