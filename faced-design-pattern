@@ -1,0 +1,64 @@
+
+/**
+ * Faced design pattern provide way to access complex subsystem in a simple way,
+ * 
+ */
+
+import java.util.Scanner;
+
+class CarEngine{
+
+    public String engine(){
+       return "Engine is ready to start ";
+    }
+}
+
+class  CarConditions{
+
+    public String conditions(){
+
+        return  "minimum conditions is provided to start ";
+    }
+}
+
+class Speed{
+
+    public String startingSpeed(){
+       return " 0 kmph ";
+
+    }
+}
+class CarFaced{
+
+    static CarFaced carFaced = new CarFaced();
+    private Speed speed;
+    private CarEngine carEngine;
+    private  CarConditions carConditions;
+
+    private CarFaced(){
+        this.speed = new Speed();
+        this.carEngine = new CarEngine();
+        this.carConditions = new CarConditions();
+    }
+
+    public static CarFaced getInstance(){
+        return carFaced;
+    }
+
+    public String carInfo(){
+       return this.carEngine.engine()  + this.speed.startingSpeed() + this.carConditions.conditions();
+    }
+}
+
+public class CarUser {
+
+    public static void main(String[] args) {
+        System.out.println("press A to start the car ");
+        Scanner sc = new Scanner(System.in);
+        String s = sc.nextLine();
+        if(s.equalsIgnoreCase("A")){
+            System.out.println(CarFaced.getInstance().carInfo() + " happy driving");
+        }
+
+    }
+}
