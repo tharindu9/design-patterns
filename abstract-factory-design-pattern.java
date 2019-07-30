@@ -86,21 +86,16 @@ class CreateProducer{
             return new CreateBoysApperal();
         else
             return new CreateLadiesApperal();
-
     }
 
 }
 
-
 public class ApperalMain {
-
-
+    
     public static void main(String[] args) {
 
         CreateApperal createApperal = CreateProducer.getApperalFactoey(false);
         createApperal.generateApperal("tshirt").getDesign();
-
     }
-
 
 }
