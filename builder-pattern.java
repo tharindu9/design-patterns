@@ -1,5 +1,9 @@
 package com.company.builder;
+/**
 
+The Builder is a design pattern designed to provide a 
+flexible solution to various object creation problems in object-oriented programming. 
+*/
 import java.util.ArrayList;
 import java.util.List;
 
