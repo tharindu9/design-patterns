@@ -34,7 +34,7 @@ final class ImmutableAnimal{
     if(favoriteFoods == null){
       throw new RuntimeException("add some favorite fruits");
     }
-      this.favoriteFoods = favoriteFoods;
+      this.favoriteFoods = new ArrayList<>(favoriteFoods);
 
   }
 
