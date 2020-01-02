@@ -1,58 +1,78 @@
-package proxy;
-
-/**
- 
- *
- */
-
-import java.util.*;
-
-interface CarInterface {
-    void driverCar();
+interface Car {
+	void driverCar();
 }
 
-class Car implements CarInterface{
+class CarImpl implements Car {
 
-    public void driverCar(){
-        System.out.println( " be a polite driver ");
-    }
-
+	public void driverCar() {
+		System.out.println(" be a polite driver ");
+	}
 }
 
-class ProxyCar implements CarInterface {
+class ProxyCar implements Car {
 
-    Driver driver;
-    CarInterface car;
-    ProxyCar(Driver driver){
-        this.driver = driver;
-        this.car = this;
-    }
+	private Driver driver;
+	private Car car;
 
-    @Override
-    public void driverCar(){
-        if(this.driver.age<18){
-            System.out.println("you dnt have permission ");
-        }
-        else {
-            System.out.println("Wellcome to the driving seat");
-        }
+	ProxyCar(Driver driver) {
+		setDriver(driver);
+		setCar(this);
+	}
 
-    }
+	public Driver getDriver() {
+		return driver;
+	}
+
+	public void setDriver(Driver driver) {
+		if(driver == null){
+			throw new IllegalArgumentException("driver can not be null");
+		}
+		this.driver = driver;
+	}
+
+	public Car getCar() {
+		return car;
+	}
+
+	public void setCar(Car car) {
+		if(driver == null){
+			throw new IllegalArgumentException("Car can not be null");
+		}
+		this.car = car;
+	}
+
+	public void driverCar() {
+		if (this.driver.getAge() < 18) {
+			System.out.println("you dnt have permission ");
+		} else {
+			System.out.println("Wellcome to driving seat");
+		}
+
+	}
 }
 
 class Driver {
 
-    int age;
+	private int age;
 
-    Driver(int age){
-        this.age = age;
-    }
+	Driver(int age) {
+		setAge(age);
+	}
+
+	public int getAge() {
+		return age;
+	}
+
+	public void setAge(int age) {
+		this.age = age;
+	}
+
 }
-public class Main {
-    public static void main(String[] args) throws Exception {
 
-        CarInterface car = new ProxyCar(new Driver(14));
-        Scanner sc = new Scanner(System.in);
-        car.driverCar();
-    }
+public class Main1 {
+	public static void main(String[] args) throws Exception {
+
+		Car car = new ProxyCar(null);
+		car.driverCar();
+	}
 }
