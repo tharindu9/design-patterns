@@ -7,8 +7,6 @@ class Cage<T> implements Cloneable{
 	private int length;
 	private int width;
 	
-	
-	
 	public Cage(int height, int length, int width) {
 		this.setHeight(height); 
 		this.setLength(length);
@@ -25,7 +23,6 @@ class Cage<T> implements Cloneable{
 			e.printStackTrace();
 		}
 		return cage;
-		
 	}
 
 	public int getHeight() {
@@ -57,7 +54,6 @@ class LionCage extends Cage<LionCage> {
 	
 	public LionCage(int height , int length , int width) {
 		super(height, length, width);
-		
 	}
 
 	@Override
@@ -79,11 +75,7 @@ class ElephantCage extends Cage<ElephantCage>{
 		return "AnimalCage [getHeight()=" + getHeight() + ", getLength()=" + getLength() + ", getWidth()=" + getWidth()
 				+ ", getClass()=" + getClass() + ", hashCode()=" + hashCode() + ", toString()=" + super.toString()
 				+ "]";
-	}
-	
-	
-
-	
+	}	
 }
 
 
@@ -99,18 +91,15 @@ class CageStore {
 	public static Cage<?> getCage(String animal) {
 		return (Cage<?>)cages.get(animal).clone();
 	}
-	
 }
+
 public class CreateCage {
 
 	@SuppressWarnings("unchecked")
 	public static void main(String[] args) {
-		
 		Cage<ElephantCage> elephantCage = (Cage<ElephantCage>) CageStore.getCage("Elephant");
 		Cage<LionCage> lionCage = (Cage<LionCage>) CageStore.getCage("Lion");
 		System.out.println(elephantCage);
 		System.out.println(lionCage);
-
 	}
-
 }
