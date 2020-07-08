@@ -1,3 +1,7 @@
+/*
+Proxy is a structural design pattern.
+We can handle the accessibility to other object by using proxy pattern. 
+*/
 interface Car {
 	void driverCar();
 }
